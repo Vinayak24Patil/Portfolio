@@ -35,9 +35,6 @@ I'm a **Computer Science and Engineering (CSE) student** at Rajarambapu Institut
 > - Designed a **three-round competitive coding challenge** for my college event.
 > - Curated problem statements ranging from **simple to medium-hard difficulty**.
 
-## 📈 GitHub Stats
-![Vinayak's GitHub Stats](https://github-readme-stats.vercel.app/api?username=yourusername&show_icons=true&theme=radical)
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=yourusername&layout=compact&theme=radical)
 
 ## 📫 Connect with Me
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yourlinkedinprofile)
