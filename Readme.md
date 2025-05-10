@@ -5,7 +5,6 @@ I'm a **Computer Science and Engineering (CSE) student** at Rajarambapu Institut
 
 ### 💡 What I Do:
 - **Java Development**: Specializing in backend development and working on **JDBC, Spring Boot, and REST APIs**.
-- **Machine Learning Enthusiast**: Exploring ML with **Python, PyTorch, and Pygame AI**.
 - **Competitive Programmer**: Solved **406+ problems** on GeeksforGeeks and achieved an **institutional rank of 51**.
 - **Event Organizer**: Conducting coding challenges and workshops to help peers improve their technical skills.
 
@@ -20,11 +19,6 @@ I'm a **Computer Science and Engineering (CSE) student** at Rajarambapu Institut
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 ## 📌 Projects
-### 🔹 [Snake Game AI](https://github.com/yourusername/snake-game-ai)
-> **Technologies:** Python, Pygame, PyTorch
-> - Implemented an AI that learns how to play the classic Snake game using **reinforcement learning**.
-> - Uses **Deep Q-Networks (DQN)** to improve performance over time.
-
 ### 🔹 [Employee Management System](https://github.com/yourusername/employee-management-system)
 > **Technologies:** Java, MySQL
 > - A console-based system to manage employee records, salaries, and performance.
