@@ -1,40 +1,58 @@
 pipeline {
     agent any
+
     environment {
-        DEPLOY_DIR = '/var/www/html' // For Linux; for Windows use C:\\inetpub\\wwwroot
+        IMAGE_NAME = "vinayakpatil24/portfolio"
+        IMAGE_TAG = "latest"
     }
+
     stages {
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
-                echo 'Cloning Portfolio repo from GitHub...'
                 git branch: 'main', url: 'https://github.com/Vinayak24Patil/Portfolio.git'
             }
         }
-        stage('Build') {
+
+        stage('Build Docker Image') {
             steps {
-                echo 'Build Step: Listing workspace files'
-                sh 'ls -la' // Use `bat 'dir'` if on Windows
+                bat """
+                    docker build -t %IMAGE_NAME%:%IMAGE_TAG% .
+                """
             }
         }
-        stage('Test') {
+
+        stage('Login to Docker Hub') {
             steps {
-                echo 'Testing HTML using tidy'
-                sh 'tidy -q -e index.html || true' // Use `bat 'tidy -q -e index.html || echo TIDY_EXIT_%ERRORLEVEL%'` on Windows
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    bat """
+                        docker logout
+                        echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
+                    """
+                }
             }
         }
-        stage('Deploy') {
+
+        stage('Push Image to Docker Hub') {
             steps {
-                echo "Deploying files to ${DEPLOY_DIR}"
-                sh "cp -r * ${DEPLOY_DIR}/"  // Use `bat "xcopy /Y /E * ${DEPLOY_DIR}\\` on Windows
+                bat """
+                    docker push %IMAGE_NAME%:%IMAGE_TAG%
+                """
+            }
+        }
+
+        stage('Deploy Container') {
+            steps {
+                bat """
+                    docker rm -f web-container || echo Container not running
+                    docker run -d --name web-container -p 7070:80 %IMAGE_NAME%:%IMAGE_TAG%
+                """
             }
         }
     }
+
     post {
-        success {
-            echo 'Pipeline finished successfully! Visit: http://localhost/index.html'
-        }
-        failure {
-            echo 'Pipeline failed! Check console output.'
+        always {
+            echo "Pipeline finished. Visit http://localhost:7070"
         }
     }
 }
