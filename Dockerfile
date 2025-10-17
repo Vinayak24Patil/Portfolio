@@ -1,11 +1,13 @@
-# Use lightweight Nginx image
 FROM nginx:alpine
+
+# Clear default nginx html
 RUN rm -rf /usr/share/nginx/html/*
-# Copy HTML file(s) into Nginx web root
-COPY ./usr/share/nginx/html
-# Expose container port 80ss
+
+# Copy all HTML files from project root to nginx html folder
+COPY ./ /usr/share/nginx/html/
+
+# Expose container port
 EXPOSE 80
+
 # Start Nginx in foreground
-
 CMD ["nginx", "-g", "daemon off;"]
-
